@@ -3,16 +3,21 @@ const userRouter = express.Router()
 const { UserModel } = require('../models/userModel')
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
+const multer = require("multer");
 
-userRouter.post("/register", async (req, res) => {
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+userRouter.post("/register",upload.single("profilePicture"), async (req, res) => {
     const {username, email, password, mobileNum, interests } = req.body;
+    const img = req.file ? req.file.buffer : null;
     try {
         const existingUser = await UserModel.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
         }
         bcrypt.hash(password, 5, async (err, hash) => {
-            const user = new UserModel({username, email, password: hash, mobileNum, interests });
+            const user = new UserModel({username, email, password: hash, mobileNum, interests, profilePicture: img });
             await user.save();
             console.log(user);
             res.status(200).send({ msz: "Registration has been done!" });
@@ -21,6 +26,7 @@ userRouter.post("/register", async (req, res) => {
         res.status(500).send({ msz: "There Is Err", err });
     }
 });
+
 
 userRouter.post("/login", async (req, res) => {
     const { email, password } = req.body
@@ -43,9 +49,10 @@ userRouter.post("/login", async (req, res) => {
 })
 
 // Update a User
-userRouter.put("/update/:userID", async (req, res) => {
+userRouter.put("/update/:userID",upload.single("profilePicture"), async (req, res) => {
     const { userID } = req.params;
     const { username, email, password, mobileNum, interests } = req.body;
+    const img = req.file ? req.file.buffer : null;
     try {
         const user = await UserModel.findById({_id:userID});
         if (!user) {
@@ -55,6 +62,7 @@ userRouter.put("/update/:userID", async (req, res) => {
         if (email) user.email = email;
         if (mobileNum) user.mobileNum = mobileNum;
         if (interests) user.interests = interests;
+        if (img) user.profilePicture = img;
         if (password) {
             bcrypt.hash(password, 5, async (err, hash) => {
                 if (err) {
