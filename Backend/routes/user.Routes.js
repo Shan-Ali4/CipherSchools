@@ -1,19 +1,18 @@
 const express = require("express")
 const userRouter = express.Router()
 const { UserModel } = require('../models/userModel')
-const {Followers}=require("../models/followers.Model")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 
 userRouter.post("/register", async (req, res) => {
-    const {username, email, password, mobileNum } = req.body;
+    const {username, email, password, mobileNum, interests } = req.body;
     try {
         const existingUser = await UserModel.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
         }
         bcrypt.hash(password, 5, async (err, hash) => {
-            const user = new UserModel({username, email, password: hash, mobileNum });
+            const user = new UserModel({username, email, password: hash, mobileNum, interests });
             await user.save();
             console.log(user);
             res.status(200).send({ msz: "Registration has been done!" });
@@ -46,7 +45,7 @@ userRouter.post("/login", async (req, res) => {
 // Update a User
 userRouter.put("/update/:userID", async (req, res) => {
     const { userID } = req.params;
-    const { username, email, password, mobileNum } = req.body;
+    const { username, email, password, mobileNum, interests } = req.body;
     try {
         const user = await UserModel.findById({_id:userID});
         if (!user) {
@@ -55,6 +54,7 @@ userRouter.put("/update/:userID", async (req, res) => {
         if (username) user.username = username;
         if (email) user.email = email;
         if (mobileNum) user.mobileNum = mobileNum;
+        if (interests) user.interests = interests;
         if (password) {
             bcrypt.hash(password, 5, async (err, hash) => {
                 if (err) {
