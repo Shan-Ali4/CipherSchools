@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="./css/index.css"> -->
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>User Registration Form</h1>
+  <form id="registrationForm" method="post" enctype="multipart/form-data">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+
+    <label for="mobileNum">Mobile Number:</label>
+    <input type="tel" id="mobileNum" name="mobileNum"><br><br>
+
+    <label for="interests">Interests:</label>
+    <input type="text" id="interests" name="interests"><br><br>
+
+    <label for="profilePicture">Profile Picture:</label>
+    <input type="file" id="profilePicture" name="profilePicture"><br><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div>
+    <h2>Preview of profile picture:</h2>
+    <img id="profilePicturePreview" src="" width="100px" height="100px" alt="">
+  </div>
+</body>
+<script>
+    const form = document.getElementById('registrationForm');
+const profilePicturePreview = document.getElementById('profilePicturePreview');
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const response = await fetch('http://localhost:8080/user/register', {
+    method: 'POST',
+    body: formData
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    console.error(errorData.message);
+    alert('There was an error with your registration');
+    return;
+  }
+
+  const result = await response.json();
+  console.log(result);
+  alert(result.message);
+
+  // Set the profile picture preview to the uploaded image
+  const profilePicture = document.getElementById('profilePicture').files[0];
+  const profilePictureUrl = URL.createObjectURL(profilePicture);
+  profilePicturePreview.src = profilePictureUrl;
+});
+
+</script>
+
+</html>
