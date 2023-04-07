@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .page-link {
+            display: inline-block;
+            padding: 0.5rem 0.75rem;
+            margin: 0.25rem;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        .page-link.active {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+    </style>
+    <title>Followers</title>
+</head>
+
+<body>
+    <div id="follower-list"></div>
+    <div id="pagination"></div>
+</body>
+    <script>
+        const PAGE_SIZE = 2; // number of followers per page
+let currentPage = 1; // current page number
+let totalPages = 0; // total number of pages
+
+// function to retrieve followers data from API and display on page
+async function displayFollowers(page) {
+  const url = `http://localhost:8080/followers/`;
+  const response = await fetch(url);
+  const data = await response.json();
+  
+  // update total pages based on total followers count
+  totalPages = Math.ceil(data.total_followers / PAGE_SIZE);
+  
+  // display followers data on page
+  const followerList = document.getElementById("follower-list");
+  followerList.innerHTML = "";
+  for (const follower of data.followers) {
+    const followerDiv = document.createElement("div");
+    followerDiv.classList.add("follower");
+    
+    const img = document.createElement("img");
+    img.src = follower.img;
+    followerDiv.appendChild(img);
+    
+    const name = document.createElement("p");
+    name.innerText = follower.name;
+    followerDiv.appendChild(name);
+    
+    const study = document.createElement("p");
+    study.innerText = follower.study;
+    followerDiv.appendChild(study);
+    
+    followerList.appendChild(followerDiv);
+  }
+}
+
+// function to update pagination links based on current page
+function updatePagination() {
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
+  for (let i = 1; i <= totalPages; i++) {
+    const pageLink = document.createElement("a");
+    pageLink.classList.add("page-link");
+    pageLink.innerText = i;
+    if (i === currentPage) {
+      pageLink.classList.add("active");
+    } else {
+      pageLink.addEventListener("click", () => {
+        currentPage = i;
+        displayFollowers(currentPage);
+        updatePagination();
+      });
+    }
+    pagination.appendChild(pageLink);
+  }
+}
+
+// initial display of first page of followers
+displayFollowers(currentPage);
+updatePagination();
+
+    </script>
+</html>
