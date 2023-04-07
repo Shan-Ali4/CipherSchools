@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <script src="https://kit.fontawesome.com/c0adbb8084.js" crossorigin="anonymous"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- Nav-Bar Start -->
+  <nav class="navbar">
+    <div class="nav">
+      <div class="nav-left">
+        <i class="fa-solid fa-bars"></i>
+        <div class="cyp">
+          <img src="https://www.cipherschools.com/static/media/Cipherschools_icon@2x.3b571d743ffedc84d039.png"
+            alt="logo">
+          <p>CipherSchools</p>
+        </div>
+        <div class="browse">
+          <i class="fa-regular fa-compass"></i>
+          <p>Browse</p>
+          <i class="fa-solid fa-angle-down"></i>
+        </div>
+      </div>
+      <div class="nav-right">
+        <form action="#" class="search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" name="#" placeholder="Search and Learn" id="#">
+          <i class="fa-solid fa-sliders"></i>
+        </form>
+        <div class="notfication">
+          <i class="fa-regular fa-bell"></i>
+        </div>
+        <div class="profile" id="btnpop">
+          <i class="fa-solid fa-user"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Nav-Bar End -->
+  <div class="user-box">
+    <div class="user-details">
+      <div class="update">
+        <div class="profile">
+          <img id="profilePicturePreview" src="" width="100px" height="100px" alt="">
+          <i class="fa-solid fa-square-pen" id="update-on"></i>
+        </div>
+        <div class="user-show">
+          <div>
+            <h2>Hello</h2>
+            <h1 id="name-user"></h1>
+            <h2 id="email-user"></h2>
+          </div>
+        </div>
+        <div class="followers">
+          <a href="./folowers.html">Followers</a>
+        </div>
+      </div>
+      <div class="wrapper-form" style="display: none;">
+        <h2>Update Details</h2>
+        <span class="icon-close2">
+          <i class="fa-solid fa-xmark"></i>
+        </span>
+        <form class="update-form updateted">
+          <div class="input-box">
+            <span class="icon"><i class="fa-sharp fa-solid fa-user"></i></span>
+            <input type="text" id="name-up" name="username" required>
+            <label for="">Username</label>
+          </div>
+          <div class="input-box">
+            <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+            <input type="email" id="email-up" name="email" required>
+            <label for="">Email</label>
+          </div>
+          <div class="input-box">
+            <span class="icon"><i class="fa-solid fa-phone"></i></span>
+            <input type="number" id="tel-up" name="mobileNum" required>
+            <label for="">Phone Number</label>
+          </div>
+          <div class="input-box">
+            <span class="icon"><i class="fa-solid fa-lock"></i></span>
+            <input type="password" id="password-up" name="password" required>
+            <label for="">Password</label>
+          </div>
+          <button type="submit" class="btn-up">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Login Register Start-->
+  <div class="wrapper">
+    <span class="icon-close">
+      <i class="fa-solid fa-xmark"></i>
+    </span>
+    <div class="form-box login">
+      <h2>login</h2>
+      <form class="login-form">
+        <div class="input-box">
+          <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+          <input type="email" id="email-login" required>
+          <label for="">Email</label>
+        </div>
+        <div class="input-box">
+          <span class="icon"><i class="fa-solid fa-lock"></i></span>
+          <input type="password" id="password-login" required>
+          <label for="">Password</label>
+        </div>
+        <div class="remember-forgot">
+          <label><input type="checkbox">Remember me</label>
+          <a href="#">Forgot Password?</a>
+        </div>
+        <button type="submit" class="btn">Login</button>
+        <div class="login-register">
+          <p>Don't Have an account? <a href="#" class="register-link">Register</a></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="form-box register">
+      <h2>Registeration</h2>
+      <form class="register-form">
+        <div class="input-box">
+          <span class="icon"><i class="fa-sharp fa-solid fa-user"></i></span>
+          <input type="text" id="name-reg" name="username" required>
+          <label for="">Username</label>
+        </div>
+        <div class="input-box">
+          <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+          <input type="email" id="email-reg" name="email" required>
+          <label for="">Email</label>
+        </div>
+        <div class="input-box">
+          <span class="icon"><i class="fa-solid fa-phone"></i></span>
+          <input type="number" id="tel-reg" name="mobileNum" required>
+          <label for="">Phone Number</label>
+        </div>
+        <div class="input-box">
+          <span class="icon"><i class="fa-solid fa-lock"></i></span>
+          <input type="password" id="password-reg" name="password" required>
+          <label for="">Password</label>
+        </div>
+        <div class="remember-forgot">
+          <label><input type="checkbox">I agree to the terms & conditions</label>
+        </div>
+        <button type="submit" class="btn">Register</button>
+        <div class="login-register">
+          <p>Already have an account?
+            <a href="#" class="login-link">Login</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Login Register End-->
+
+
+</body>
+<script src="index.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h1>User Registration Form</h1>
+  <form id="registrationForm" method="post" enctype="multipart/form-data">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+
+    <label for="mobileNum">Mobile Number:</label>
+    <input type="tel" id="mobileNum" name="mobileNum"><br><br>
+
+    <label for="interests">Interests:</label>
+    <input type="text" id="interests" name="interests"><br><br>
+
+    <label for="profilePicture">Profile Picture:</label>
+    <input type="file" id="profilePicture" name="profilePicture"><br><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div>
+    <h2>Preview of profile picture:</h2>
+    <img id="profilePicturePreview" src="" width="100px" height="100px" alt="">
+  </div>
+
+<script>
+  const form = document.getElementById('registrationForm');
+  const profilePicturePreview = document.getElementById('profilePicturePreview');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const response = await fetch('http://localhost:8080/user/register', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error(errorData.message);
+      alert('There was an error with your registration');
+      return;
+    }
+
+    const result = await response.json();
+    console.log(result);
+    alert(result.message);
+
+    // Set the profile picture preview to the uploaded image
+    const profilePicture = document.getElementById('profilePicture').files[0];
+    console.log(profilePicture)
+    const profilePictureUrl = URL.createObjectURL(profilePicture);
+    profilePicturePreview.src = profilePictureUrl;
+    console.log(profilePictureUrl)
+  });
+
+</script> -->
+
+</html>
