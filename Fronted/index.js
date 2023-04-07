@@ -43,7 +43,7 @@ loginForm.addEventListener('submit', async (event) => {
   const email = document.querySelector('#email-login').value;
   const password = document.querySelector('#password-login').value;
   try {
-    const response = await fetch('http://localhost:8080/user/login', {
+    const response = await fetch('https://kind-jade-salmon-gown.cyclic.app/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ registerForm.addEventListener('submit', async (event) => {
   const password = document.querySelector('#password-reg').value;
   // const agreeTerms = document.querySelector('#agree-terms').checked;
   try {
-    const response = await fetch('http://localhost:8080/user/register', {
+    const response = await fetch('https://kind-jade-salmon-gown.cyclic.app/user/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
